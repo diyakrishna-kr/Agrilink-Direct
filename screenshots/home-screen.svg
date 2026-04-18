@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <rect width="1440" height="900" fill="#eef5ea"/>
+  <rect x="70" y="60" width="1300" height="780" rx="28" fill="#ffffff" stroke="#cfd8c8" stroke-width="3"/>
+  <rect x="70" y="60" width="1300" height="74" rx="28" fill="#2f6b3b"/>
+  <text x="120" y="106" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">Agrilink Direct</text>
+  <rect x="120" y="175" width="470" height="54" rx="27" fill="#f6fbf4" stroke="#c7d2c2" stroke-width="2"/>
+  <text x="150" y="210" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#7b8794">Search products, categories, or farmers...</text>
+  <rect x="680" y="180" width="92" height="40" rx="20" fill="#2f6b3b"/>
+  <rect x="790" y="180" width="110" height="40" rx="20" fill="#e5f1df"/>
+  <rect x="920" y="180" width="150" height="40" rx="20" fill="#e5f1df"/>
+  <rect x="1090" y="180" width="120" height="40" rx="20" fill="#e5f1df"/>
+  <text x="713" y="206" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">All</text>
+  <text x="821" y="206" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#234f2c">Fruits</text>
+  <text x="952" y="206" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#234f2c">Vegetables</text>
+  <text x="1120" y="206" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#234f2c">Dairy</text>
+  <rect x="120" y="280" width="350" height="450" rx="24" fill="#f8fbf7" stroke="#d8dfd2" stroke-width="2"/>
+  <rect x="545" y="280" width="350" height="450" rx="24" fill="#f8fbf7" stroke="#d8dfd2" stroke-width="2"/>
+  <rect x="970" y="280" width="280" height="450" rx="24" fill="#f8fbf7" stroke="#d8dfd2" stroke-width="2"/>
+  <rect x="150" y="310" width="290" height="150" rx="20" fill="#c8e6b9"/>
+  <rect x="575" y="310" width="290" height="150" rx="20" fill="#ffd29a"/>
+  <rect x="1000" y="310" width="220" height="150" rx="20" fill="#c8e6b9"/>
+  <text x="150" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#1f2937">Tomato Red</text>
+  <text x="150" y="562" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#1f2937">Rs. 48.00/kg</text>
+  <text x="150" y="600" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#6b7280">4.7 rating • 24 kg stock</text>
+  <rect x="150" y="635" width="140" height="42" rx="21" fill="#2f6b3b"/>
+  <text x="182" y="662" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Buy Now</text>
+  <text x="575" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#1f2937">Paneer Fresh</text>
+  <text x="575" y="562" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#1f2937">Rs. 120.00/kg</text>
+  <text x="575" y="600" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#6b7280">Near expiry offer • 12 kg stock</text>
+  <rect x="575" y="635" width="188" height="42" rx="21" fill="#fff4cc" stroke="#d3b14b" stroke-width="2"/>
+  <text x="603" y="662" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#7a5b00">10% off today</text>
+  <text x="1000" y="520" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#1f2937">Spinach</text>
+  <text x="1000" y="562" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#1f2937">Rs. 32.00/kg</text>
+  <text x="1000" y="600" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#6b7280">Fresh leafy greens</text>
+  <rect x="1000" y="635" width="140" height="42" rx="21" fill="#2f6b3b"/>
+  <text x="1032" y="662" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Buy Now</text>
+</svg>

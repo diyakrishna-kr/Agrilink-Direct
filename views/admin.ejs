@@ -1,0 +1,186 @@
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+  <div>
+    <h2 class="mb-1">Admin Dashboard</h2>
+    <p class="text-muted mb-0">Review marketplace activity, monitor products, and step in only when special intervention is needed.</p>
+  </div>
+</div>
+
+<% if (message) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+<% if (error) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<div class="glass-container p-4 mb-4">
+  <div class="text-muted small text-uppercase mb-2">Revenue From PL/SQL Function</div>
+  <div class="display-6 fw-bold mb-1">Rs. <%= Number(totalRevenue || 0).toFixed(2) %></div>
+  <p class="text-muted mb-0">This value is loaded through the Oracle `get_total_revenue()` function.</p>
+</div>
+
+<h3 class="mb-3">All Farmers</h3>
+<div class="glass-container p-0 overflow-hidden mb-5">
+  <table class="table table-hover align-middle mb-0">
+    <thead class="table-dark">
+      <tr>
+        <th class="ps-4">Farmer</th>
+        <th>Phone</th>
+        <th>Location</th>
+        <th class="pe-4">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (farmers.length === 0) { %>
+        <tr><td colspan="4" class="text-center py-4 text-muted">No farmers found.</td></tr>
+      <% } %>
+      <% farmers.forEach(f => { %>
+        <tr>
+          <td class="ps-4"><strong><%= f.name %></strong></td>
+          <td><%= f.phone || 'N/A' %></td>
+          <td><%= f.location || 'N/A' %></td>
+          <td class="pe-4">
+            <form action="/admin/farmer/<%= f.farmer_id %>/delete" method="POST" onsubmit="return confirm('Delete this farmer and all related products/orders?');">
+              <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="mb-3">All Customers</h3>
+<div class="glass-container p-0 overflow-hidden mb-5">
+  <table class="table table-hover align-middle mb-0">
+    <thead class="table-dark">
+      <tr>
+        <th class="ps-4">Customer</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th class="pe-4">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (customers.length === 0) { %>
+        <tr><td colspan="5" class="text-center py-4 text-muted">No customers found.</td></tr>
+      <% } %>
+      <% customers.forEach(c => { %>
+        <tr>
+          <td class="ps-4"><strong><%= c.name %></strong></td>
+          <td><%= c.email || 'N/A' %></td>
+          <td><%= c.phone || 'N/A' %></td>
+          <td><%= c.address || 'N/A' %></td>
+          <td class="pe-4">
+            <form action="/admin/customer/<%= c.customer_id %>/delete" method="POST" onsubmit="return confirm('Delete this customer and all related orders/payments?');">
+              <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="mb-3">All Products</h3>
+<div class="glass-container p-0 overflow-hidden mb-5">
+  <table class="table table-hover align-middle mb-0">
+    <thead class="table-dark">
+      <tr>
+        <th class="ps-4">Product</th>
+        <th>Farmer</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Expiry</th>
+        <th class="pe-4">Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (products.length === 0) { %>
+        <tr><td colspan="6" class="text-center py-4 text-muted">No products found.</td></tr>
+      <% } %>
+      <% products.forEach(p => { %>
+        <tr>
+          <td class="ps-4">
+            <strong><%= p.product_name %></strong>
+            <% if (p.discount_percent > 0) { %>
+              <div><span class="badge bg-warning text-dark"><%= p.discount_percent %>% near expiry discount</span></div>
+            <% } %>
+          </td>
+          <td><%= p.farmer_name %></td>
+          <td><%= p.category %></td>
+          <td>
+            <% if (p.discount_percent > 0) { %>
+              <div class="text-decoration-line-through text-muted small">Rs. <%= p.original_price_per_kg.toFixed(2) %></div>
+              <div class="text-success fw-bold">Rs. <%= p.discounted_price_per_kg.toFixed(2) %></div>
+            <% } else { %>
+              Rs. <%= p.original_price_per_kg.toFixed(2) %>
+            <% } %>
+          </td>
+          <td><%= p.expiry_display %></td>
+          <td class="pe-4"><%= p.available_quantity %> kg</td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="mb-3">All Orders</h3>
+<div class="glass-container p-0 overflow-hidden">
+  <table class="table table-hover align-middle mb-0">
+    <thead class="table-dark">
+      <tr>
+        <th class="ps-4">Order</th>
+        <th>Customer</th>
+        <th>Item</th>
+        <th>Farmer</th>
+        <th>Payment</th>
+        <th>Address</th>
+        <th>Status</th>
+        <th>Refund</th>
+        <th class="pe-4">Handled By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (orders.length === 0) { %>
+        <tr><td colspan="9" class="text-center py-4 text-muted">No orders found.</td></tr>
+      <% } %>
+      <% orders.forEach(o => { %>
+        <tr>
+          <td class="ps-4">
+            <strong>#<%= o.order_id %></strong>
+            <div class="small text-muted"><%= new Date(o.order_date).toLocaleString() %></div>
+          </td>
+          <td><%= o.customer_name %></td>
+          <td>
+            <strong><%= o.product_name %></strong>
+            <div class="small text-muted"><%= o.quantity %> kg</div>
+          </td>
+          <td><%= o.farmer_name %></td>
+          <td><%= o.payment_mode %></td>
+          <td><%= o.delivery_address || 'N/A' %></td>
+          <td>
+            <span class="badge <%= o.order_status === 'Delivered' ? 'bg-success' : o.order_status === 'Shipped' ? 'bg-primary' : o.order_status === 'Packed' ? 'bg-info text-dark' : o.order_status === 'Cancelled' ? 'bg-danger' : 'bg-warning text-dark' %> rounded-pill">
+              <%= o.order_status %>
+            </span>
+          </td>
+          <td>
+            <% if (o.order_status === 'Cancelled') { %>
+              <div class="small text-success"><%= Number(o.refund_percent || 0) %>%</div>
+              <div class="small text-muted">Rs. <%= Number(o.refund_amount || 0).toFixed(2) %></div>
+            <% } else { %>
+              <span class="small text-muted">-</span>
+            <% } %>
+          </td>
+          <td class="pe-4"><%= o.farmer_name %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

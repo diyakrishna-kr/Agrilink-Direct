@@ -1,0 +1,5 @@
+Flask==2.3.3
+Flask-SQLAlchemy==3.0.4
+
+# optional for easier dev
+envparse==0.2.0

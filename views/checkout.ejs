@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+  <div>
+    <h2 class="mb-1">Checkout</h2>
+    <p class="text-muted mb-0">Review your order, then enter payment and delivery details.</p>
+  </div>
+  <a href="/order" class="btn btn-outline-secondary">Back to Bag</a>
+</div>
+
+<% if (message) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+<% if (error) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<div class="row g-4">
+  <div class="col-lg-7">
+    <% cartState.groups.forEach(group => { %>
+      <div class="card glass-card border-0 shadow-sm mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0"><%= group.farmer_name %></h5>
+            <span class="badge bg-dark rounded-pill">Order Group</span>
+          </div>
+
+          <% group.items.forEach(item => { %>
+            <div class="cart-item">
+              <div>
+                <div class="fw-bold"><%= item.product_name %></div>
+                <div class="small text-muted">Qty selected: <%= item.quantity %> kg</div>
+                <div class="small text-muted">Expires: <%= item.expiry_display %></div>
+                <% if (item.discount_percent > 0) { %>
+                  <div class="small text-success"><%= item.discount_percent %>% near-expiry discount applied</div>
+                <% } %>
+              </div>
+              <div class="text-end">
+                <div class="fw-bold text-success">Rs. <%= item.subtotal.toFixed(2) %></div>
+                <% if (item.discount_percent > 0) { %>
+                  <div class="small text-decoration-line-through text-muted">Rs. <%= item.original_subtotal.toFixed(2) %></div>
+                <% } %>
+              </div>
+            </div>
+          <% }) %>
+
+          <div class="cart-group-summary mt-3">
+            <span>Total</span>
+            <strong>Rs. <%= group.total.toFixed(2) %></strong>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+  <div class="col-lg-5">
+    <div class="card border-0 shadow-sm glass-card">
+      <div class="card-body">
+        <h4 class="mb-3">Payment & Delivery</h4>
+        <div class="alert alert-warning small">
+          <strong>Cancellation policy:</strong> Placed orders get a full refund, Packed orders get a 75% refund, Shipped orders get a 50% refund, and Delivered orders cannot be cancelled.
+        </div>
+        <form action="/order/checkout" method="POST" class="row g-3">
+          <div class="col-12">
+            <label class="form-label fw-semibold">Payment Mode</label>
+            <select name="payment_mode" class="form-select" required>
+              <option value="Cash on Delivery">Cash on Delivery</option>
+              <option value="UPI">UPI</option>
+              <option value="Card">Card</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label class="form-label fw-semibold">Delivery Address</label>
+            <textarea
+              name="delivery_address"
+              class="form-control"
+              rows="4"
+              placeholder="Enter delivery address"
+              required
+            ><%= typeof defaultAddress !== 'undefined' ? defaultAddress : '' %></textarea>
+          </div>
+          <div class="col-12">
+            <div class="cart-summary mb-3">
+              <div><strong>Total payable:</strong> Rs. <%= cartState.total.toFixed(2) %></div>
+              <% if (cartState.savings > 0) { %>
+                <div class="text-success"><strong>You save:</strong> Rs. <%= cartState.savings.toFixed(2) %></div>
+              <% } %>
+            </div>
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-success fw-bold w-100" <%= cartState.hasIssues ? 'disabled' : '' %>>
+              Place Order
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

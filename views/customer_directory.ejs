@@ -1,0 +1,17 @@
+<h2 class="mb-4">Customers Directory</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <% customers.forEach(c => { %>
+    <div class="col">
+      <div class="card h-100 shadow-sm glass-card border-0">
+        <div class="card-body">
+          <h5 class="card-title fw-bold"><%= c.name %></h5>
+          <p class="card-text mb-1"><strong>Address:</strong> <%= c.address %></p>
+          <% if (userType === 'farmer' || (user && user.customer_id === c.customer_id)) { %>
+            <p class="card-text"><strong>Email:</strong> <%= c.email %></p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ER Diagram with Participation and Constraints</title>
+  <style>
+    :root {
+      --bg: #f6f2ea;
+      --ink: #1c3553;
+      --line: #6e88a1;
+      --entity: #ffffff;
+      --entity-2: #f6fbff;
+      --relation: #fff3d6;
+      --header: #0f766e;
+      --shadow: 0 12px 30px rgba(28, 53, 83, 0.12);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(15, 118, 110, 0.12), transparent 22%),
+        linear-gradient(135deg, #fbf8f1 0%, #edf6fb 100%);
+      color: var(--ink);
+    }
+
+    .wrap {
+      width: min(1600px, calc(100vw - 24px));
+      margin: 20px auto;
+      padding: 12px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #17324d, #0f766e);
+      color: #fff;
+      border-radius: 24px;
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 40px);
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      font-size: 17px;
+      opacity: 0.94;
+    }
+
+    .board {
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 28px;
+      padding: 10px;
+      box-shadow: var(--shadow);
+      overflow: auto;
+    }
+
+    svg {
+      width: 100%;
+      min-width: 1500px;
+      height: auto;
+      display: block;
+    }
+
+    .entity-box {
+      fill: var(--entity);
+      stroke: #c9d8e5;
+      stroke-width: 1.5;
+      filter: url(#shadow);
+    }
+
+    .entity-title {
+      fill: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .entity-head {
+      fill: var(--header);
+    }
+
+    .attr {
+      fill: var(--ink);
+      font-size: 16px;
+    }
+
+    .pk {
+      fill: #0f766e;
+      font-weight: 700;
+    }
+
+    .fk {
+      fill: #2563eb;
+      font-weight: 700;
+    }
+
+    .diamond {
+      fill: var(--relation);
+      stroke: #d9b567;
+      stroke-width: 1.6;
+      filter: url(#shadow);
+    }
+
+    .diamond-text {
+      fill: #7b4d00;
+      font-size: 18px;
+      font-weight: 700;
+      text-anchor: middle;
+    }
+
+    .edge {
+      stroke: var(--line);
+      stroke-width: 3;
+      fill: none;
+    }
+
+    .dbl {
+      stroke-width: 7;
+      stroke-linecap: round;
+      opacity: 0.25;
+    }
+
+    .tag {
+      fill: #516b84;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .legend {
+      margin-top: 12px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: #4d6881;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>ER Diagram with Participation and Cardinality Constraints</h1>
+      <p>Double line = total participation, single line = partial participation, and labels show 1:1, 1:N, or M:N constraints.</p>
+    </section>
+
+    <section class="board">
+      <svg viewBox="0 0 1560 1120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#1c3553" flood-opacity="0.12"/>
+          </filter>
+        </defs>
+
+        <!-- Farmer -->
+        <g transform="translate(60 70)">
+          <rect class="entity-box" width="290" height="250" rx="20"/>
+          <rect class="entity-head" width="290" height="52" rx="20"/>
+          <rect class="entity-head" y="28" width="290" height="24"/>
+          <text class="entity-title" x="145" y="34" text-anchor="middle">FARMER</text>
+          <text class="attr pk" x="18" y="86">farmer_id (PK)</text>
+          <text class="attr" x="18" y="116">name</text>
+          <text class="attr" x="18" y="146">phone</text>
+          <text class="attr" x="18" y="176">location</text>
+          <text class="attr" x="18" y="206">bank_details</text>
+          <text class="attr" x="18" y="236">password_hash</text>
+        </g>
+
+        <!-- Product -->
+        <g transform="translate(560 50)">
+          <rect class="entity-box" width="340" height="310" rx="20"/>
+          <rect class="entity-head" width="340" height="52" rx="20"/>
+          <rect class="entity-head" y="28" width="340" height="24"/>
+          <text class="entity-title" x="170" y="34" text-anchor="middle">PRODUCT</text>
+          <text class="attr pk" x="18" y="86">product_id (PK)</text>
+          <text class="attr fk" x="18" y="116">farmer_id (FK)</text>
+          <text class="attr" x="18" y="146">product_name</text>
+          <text class="attr" x="18" y="176">category</text>
+          <text class="attr" x="18" y="206">price_per_kg</text>
+          <text class="attr" x="18" y="236">available_quantity</text>
+          <text class="attr" x="18" y="266">image_url</text>
+          <text class="attr" x="18" y="296">expiry_date, discount</text>
+        </g>
+
+        <!-- Customer -->
+        <g transform="translate(1170 70)">
+          <rect class="entity-box" width="300" height="250" rx="20"/>
+          <rect class="entity-head" width="300" height="52" rx="20"/>
+          <rect class="entity-head" y="28" width="300" height="24"/>
+          <text class="entity-title" x="150" y="34" text-anchor="middle">CUSTOMER</text>
+          <text class="attr pk" x="18" y="86">customer_id (PK)</text>
+          <text class="attr" x="18" y="116">name</text>
+          <text class="attr" x="18" y="146">email</text>
+          <text class="attr" x="18" y="176">phone</text>
+          <text class="attr" x="18" y="206">address</text>
+          <text class="attr" x="18" y="236">password_hash</text>
+        </g>
+
+        <!-- Orders -->
+        <g transform="translate(1080 560)">
+          <rect class="entity-box" width="370" height="280" rx="20"/>
+          <rect class="entity-head" width="370" height="52" rx="20"/>
+          <rect class="entity-head" y="28" width="370" height="24"/>
+          <text class="entity-title" x="185" y="34" text-anchor="middle">ORDERS</text>
+          <text class="attr pk" x="18" y="86">order_id (PK)</text>
+          <text class="attr fk" x="18" y="116">customer_id (FK)</text>
+          <text class="attr" x="18" y="146">order_date</text>
+          <text class="attr" x="18" y="176">total_amount</text>
+          <text class="attr" x="18" y="206">order_status</text>
+          <text class="attr" x="18" y="236">delivery/tracking/refund/cancel</text>
+        </g>
+
+        <!-- Payment -->
+        <g transform="translate(1110 940)">
+          <rect class="entity-box" width="310" height="200" rx="20"/>
+          <rect class="entity-head" width="310" height="52" rx="20"/>
+          <rect class="entity-head" y="28" width="310" height="24"/>
+          <text class="entity-title" x="155" y="34" text-anchor="middle">PAYMENT</text>
+          <text class="attr pk" x="18" y="86">payment_id (PK)</text>
+          <text class="attr fk" x="18" y="116">order_id (FK)</text>
+          <text class="attr" x="18" y="146">payment_mode</text>
+          <text class="attr" x="18" y="176">payment_date, status</text>
+        </g>
+
+        <!-- Order Details associative entity -->
+        <g transform="translate(570 560)">
+          <rect class="entity-box" width="350" height="260" rx="20"/>
+          <rect class="entity-head" width="350" height="52" rx="20"/>
+          <rect class="entity-head" y="28" width="350" height="24"/>
+          <text class="entity-title" x="175" y="34" text-anchor="middle">ORDER_DETAILS</text>
+          <text class="attr pk" x="18" y="86">order_detail_id (PK)</text>
+          <text class="attr fk" x="18" y="116">order_id (FK)</text>
+          <text class="attr fk" x="18" y="146">product_id (FK)</text>
+          <text class="attr" x="18" y="176">quantity</text>
+          <text class="attr" x="18" y="206">price, original_price</text>
+          <text class="attr" x="18" y="236">discount_percent</text>
+        </g>
+
+        <!-- Reviews -->
+        <g transform="translate(120 770)">
+          <rect class="entity-box" width="360" height="260" rx="20"/>
+          <rect class="entity-head" width="360" height="52" rx="20"/>
+          <rect class="entity-head" y="28" width="360" height="24"/>
+          <text class="entity-title" x="180" y="34" text-anchor="middle">PRODUCT_REVIEWS</text>
+          <text class="attr pk" x="18" y="86">review_id (PK)</text>
+          <text class="attr fk" x="18" y="116">order_id (FK)</text>
+          <text class="attr fk" x="18" y="146">product_id (FK)</text>
+          <text class="attr fk" x="18" y="176">customer_id (FK)</text>
+          <text class="attr" x="18" y="206">rating</text>
+          <text class="attr" x="18" y="236">review_text, created_at</text>
+        </g>
+
+        <!-- Relationship diamonds -->
+        <polygon class="diamond" points="420,155 500,215 420,275 340,215"/>
+        <text class="diamond-text" x="420" y="210">UPLOADS</text>
+        <text class="diamond-text" x="420" y="232">1:N</text>
+
+        <polygon class="diamond" points="1030,170 1110,230 1030,290 950,230"/>
+        <text class="diamond-text" x="1030" y="210">PLACES</text>
+        <text class="diamond-text" x="1030" y="232">1:N</text>
+
+        <polygon class="diamond" points="980,600 1060,660 980,720 900,660"/>
+        <text class="diamond-text" x="980" y="640">CONTAINS</text>
+        <text class="diamond-text" x="980" y="662">1:N</text>
+
+        <polygon class="diamond" points="490,510 570,570 490,630 410,570"/>
+        <text class="diamond-text" x="490" y="550">INCLUDES</text>
+        <text class="diamond-text" x="490" y="572">1:N</text>
+
+        <polygon class="diamond" points="1265,850 1345,910 1265,970 1185,910"/>
+        <text class="diamond-text" x="1265" y="890">HAS</text>
+        <text class="diamond-text" x="1265" y="912">1:1</text>
+
+        <polygon class="diamond" points="530,820 610,880 530,940 450,880"/>
+        <text class="diamond-text" x="530" y="870">REVIEWS</text>
+        <text class="diamond-text" x="530" y="892">ternary link</text>
+
+        <!-- Farmer - Uploads - Product -->
+        <line class="edge" x1="350" y1="215" x2="340" y2="215"/>
+        <line class="edge" x1="500" y1="215" x2="560" y2="215"/>
+        <text class="tag" x="315" y="200">farmer: partial</text>
+        <text class="tag" x="518" y="200">product: total</text>
+        <line class="edge dbl" x1="500" y1="222" x2="560" y2="222"/>
+
+        <!-- Customer - Places - Orders -->
+        <line class="edge" x1="1170" y1="230" x2="1110" y2="230"/>
+        <path class="edge" d="M 950 230 C 900 230, 900 620, 1080 660" />
+        <path class="edge dbl" d="M 950 238 C 890 238, 890 630, 1080 668" />
+        <text class="tag" x="1128" y="212">customer: partial</text>
+        <text class="tag" x="930" y="380">orders: total</text>
+
+        <!-- Orders - Contains - Order_Details -->
+        <line class="edge" x1="1060" y1="660" x2="1080" y2="660"/>
+        <line class="edge dbl" x1="1060" y1="668" x2="1080" y2="668"/>
+        <line class="edge" x1="900" y1="660" x2="920" y2="660"/>
+        <line class="edge dbl" x1="900" y1="668" x2="920" y2="668"/>
+        <text class="tag" x="1010" y="644">orders: total</text>
+        <text class="tag" x="760" y="644">order_details: total</text>
+
+        <!-- Product - Includes - Order_Details -->
+        <path class="edge" d="M 730 360 C 730 430, 640 500, 570 570" />
+        <path class="edge dbl" d="M 738 360 C 738 438, 648 508, 578 578" />
+        <line class="edge" x1="410" y1="570" x2="570" y2="570"/>
+        <line class="edge dbl" x1="410" y1="578" x2="570" y2="578"/>
+        <text class="tag" x="650" y="470">product: partial</text>
+        <text class="tag" x="445" y="552">order_details: total</text>
+
+        <!-- Orders - Has - Payment -->
+        <line class="edge" x1="1265" y1="840" x2="1265" y2="850"/>
+        <line class="edge dbl" x1="1273" y1="840" x2="1273" y2="850"/>
+        <line class="edge" x1="1265" y1="970" x2="1265" y2="940"/>
+        <line class="edge dbl" x1="1273" y1="970" x2="1273" y2="940"/>
+        <text class="tag" x="1292" y="846">orders: total</text>
+        <text class="tag" x="1292" y="986">payment: total</text>
+
+        <!-- Reviews links -->
+        <path class="edge" d="M 450 880 C 420 880, 450 900, 480 900" />
+        <path class="edge dbl" d="M 450 888 C 420 888, 450 908, 480 908" />
+        <path class="edge" d="M 610 880 C 720 880, 780 840, 820 820" />
+        <path class="edge" d="M 530 820 C 560 650, 600 450, 690 360" />
+        <path class="edge" d="M 610 940 C 860 980, 1020 925, 1110 850" />
+        <text class="tag" x="612" y="790">review entity links order, product, customer</text>
+
+        <!-- M:N note -->
+        <rect x="1010" y="360" width="430" height="118" rx="18" fill="#ffffff" stroke="#c9d8e5" filter="url(#shadow)"/>
+        <text class="attr" x="1030" y="394">Important M:N Constraint:</text>
+        <text class="attr" x="1030" y="424">ORDERS and PRODUCT have an M:N relationship.</text>
+        <text class="attr" x="1030" y="454">It is resolved using the associative entity</text>
+        <text class="attr fk" x="1030" y="484">ORDER_DETAILS(order_id, product_id, quantity, ...)</text>
+      </svg>
+    </section>
+
+    <div class="legend">
+      <div><strong>Total participation:</strong> double line</div>
+      <div><strong>Partial participation:</strong> single line</div>
+      <div><strong>M:N in this schema:</strong> `orders` ↔ `product` via `order_details`</div>
+      <div><strong>1:1 in this schema:</strong> `orders` ↔ `payment`</div>
+    </div>
+  </div>
+</body>
+</html>

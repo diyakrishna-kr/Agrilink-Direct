@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chen ER Diagram</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fcfaf5;
+      color: #1b2f47;
+    }
+
+    .wrap {
+      width: min(1400px, calc(100vw - 16px));
+      margin: 10px auto;
+      padding: 8px;
+    }
+
+    .hero {
+      background: #17324d;
+      color: white;
+      border-radius: 16px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      font-size: 15px;
+      opacity: 0.95;
+    }
+
+    .board {
+      background: white;
+      border: 1px solid #d7e2ec;
+      border-radius: 18px;
+      padding: 6px;
+      overflow: auto;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .entity {
+      fill: #eef7ff;
+      stroke: #2b5c88;
+      stroke-width: 2;
+    }
+
+    .relationship {
+      fill: #fff1cf;
+      stroke: #c6921b;
+      stroke-width: 2;
+    }
+
+    .attribute {
+      fill: #ffffff;
+      stroke: #7f97ad;
+      stroke-width: 1.8;
+    }
+
+    .key {
+      fill: #ecfff3;
+      stroke: #1f8a4c;
+      stroke-width: 2;
+    }
+
+    .weak {
+      stroke-dasharray: 5 4;
+    }
+
+    .line {
+      stroke: #617d99;
+      stroke-width: 2.2;
+      fill: none;
+    }
+
+    .double {
+      stroke-width: 6;
+      opacity: 0.2;
+      stroke-linecap: round;
+    }
+
+    .label {
+      font-size: 14px;
+      fill: #17324d;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .small {
+      font-size: 11px;
+      font-weight: 700;
+      fill: #51697f;
+    }
+
+    .legend {
+      margin-top: 12px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: #51697f;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Chen Notation ER Diagram</h1>
+      <p>Classic DBMS-style E-R diagram using entities, relationships, attributes, participation, and M:N constraints.</p>
+    </section>
+
+    <section class="board">
+      <svg viewBox="0 0 1680 1120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Entities -->
+        <rect class="entity" x="90" y="170" width="170" height="70"/>
+        <text class="label" x="175" y="205">FARMER</text>
+
+        <rect class="entity" x="640" y="170" width="180" height="70"/>
+        <text class="label" x="730" y="205">PRODUCT</text>
+
+        <rect class="entity" x="1320" y="160" width="190" height="70"/>
+        <text class="label" x="1415" y="195">CUSTOMER</text>
+
+        <rect class="entity" x="1250" y="620" width="170" height="70"/>
+        <text class="label" x="1335" y="655">ORDERS</text>
+
+        <rect class="entity" x="650" y="620" width="230" height="70"/>
+        <text class="label" x="765" y="655">ORDER_DETAILS</text>
+
+        <rect class="entity" x="1220" y="1020" width="180" height="70"/>
+        <text class="label" x="1310" y="1055">PAYMENT</text>
+
+        <rect class="entity" x="120" y="900" width="250" height="70"/>
+        <text class="label" x="245" y="935">PRODUCT_REVIEWS</text>
+
+        <!-- Relationships -->
+        <polygon class="relationship" points="400,155 470,210 400,265 330,210"/>
+        <text class="label" x="400" y="210">UPLOADS</text>
+
+        <polygon class="relationship" points="1080,150 1150,205 1080,260 1010,205"/>
+        <text class="label" x="1080" y="205">PLACES</text>
+
+        <polygon class="relationship" points="1030,590 1110,655 1030,720 950,655"/>
+        <text class="label" x="1030" y="655">CONTAINS</text>
+
+        <polygon class="relationship" points="500,520 580,585 500,650 420,585"/>
+        <text class="label" x="500" y="585">INCLUDES</text>
+
+        <polygon class="relationship" points="1315,860 1385,915 1315,970 1245,915"/>
+        <text class="label" x="1315" y="915">HAS</text>
+
+        <polygon class="relationship" points="530,840 620,910 530,980 440,910"/>
+        <text class="label" x="530" y="900">REVIEWS</text>
+
+        <!-- Farmer attrs -->
+        <ellipse class="key" cx="70" cy="70" rx="85" ry="30"/>
+        <text class="label" x="70" y="70">farmer_id</text>
+        <line class="line" x1="115" y1="97" x2="150" y2="170"/>
+
+        <ellipse class="attribute" cx="200" cy="60" rx="70" ry="28"/>
+        <text class="label" x="200" y="60">name</text>
+        <line class="line" x1="195" y1="88" x2="185" y2="170"/>
+
+        <ellipse class="attribute" cx="315" cy="90" rx="75" ry="28"/>
+        <text class="label" x="315" y="90">phone</text>
+        <line class="line" x1="300" y1="117" x2="225" y2="170"/>
+
+        <ellipse class="attribute" cx="55" cy="280" rx="85" ry="28"/>
+        <text class="label" x="55" y="280">location</text>
+        <line class="line" x1="120" y1="265" x2="90" y2="235"/>
+
+        <ellipse class="attribute" cx="285" cy="305" rx="105" ry="28"/>
+        <text class="label" x="285" y="305">bank_details</text>
+        <line class="line" x1="240" y1="287" x2="230" y2="240"/>
+
+        <!-- Product attrs -->
+        <ellipse class="key" cx="565" cy="70" rx="85" ry="30"/>
+        <text class="label" x="565" y="70">product_id</text>
+        <line class="line" x1="610" y1="98" x2="690" y2="170"/>
+
+        <ellipse class="attribute" cx="720" cy="60" rx="95" ry="28"/>
+        <text class="label" x="720" y="60">product_name</text>
+        <line class="line" x1="725" y1="88" x2="730" y2="170"/>
+
+        <ellipse class="attribute" cx="900" cy="95" rx="80" ry="28"/>
+        <text class="label" x="900" y="95">category</text>
+        <line class="line" x1="860" y1="115" x2="785" y2="170"/>
+
+        <ellipse class="attribute" cx="530" cy="300" rx="95" ry="28"/>
+        <text class="label" x="530" y="300">price_per_kg</text>
+        <line class="line" x1="600" y1="282" x2="670" y2="240"/>
+
+        <ellipse class="attribute" cx="730" cy="325" rx="120" ry="28"/>
+        <text class="label" x="730" y="325">available_quantity</text>
+        <line class="line" x1="730" y1="297" x2="730" y2="240"/>
+
+        <ellipse class="attribute" cx="930" cy="300" rx="85" ry="28"/>
+        <text class="label" x="930" y="300">image_url</text>
+        <line class="line" x1="885" y1="282" x2="800" y2="235"/>
+
+        <ellipse class="attribute" cx="1035" cy="345" rx="90" ry="28"/>
+        <text class="label" x="1035" y="345">expiry_date</text>
+        <line class="line" x1="980" y1="325" x2="810" y2="235"/>
+
+        <!-- Customer attrs -->
+        <ellipse class="key" cx="1260" cy="65" rx="95" ry="30"/>
+        <text class="label" x="1260" y="65">customer_id</text>
+        <line class="line" x1="1300" y1="92" x2="1370" y2="160"/>
+
+        <ellipse class="attribute" cx="1415" cy="55" rx="70" ry="28"/>
+        <text class="label" x="1415" y="55">name</text>
+        <line class="line" x1="1415" y1="83" x2="1415" y2="160"/>
+
+        <ellipse class="attribute" cx="1560" cy="90" rx="70" ry="28"/>
+        <text class="label" x="1560" y="90">email</text>
+        <line class="line" x1="1535" y1="115" x2="1465" y2="160"/>
+
+        <ellipse class="attribute" cx="1535" cy="275" rx="75" ry="28"/>
+        <text class="label" x="1535" y="275">address</text>
+        <line class="line" x1="1495" y1="255" x2="1450" y2="230"/>
+
+        <!-- Orders attrs -->
+        <ellipse class="key" cx="1490" cy="600" rx="80" ry="30"/>
+        <text class="label" x="1490" y="600">order_id</text>
+        <line class="line" x1="1450" y1="618" x2="1418" y2="630"/>
+
+        <ellipse class="attribute" cx="1510" cy="705" rx="90" ry="28"/>
+        <text class="label" x="1510" y="705">order_date</text>
+        <line class="line" x1="1465" y1="690" x2="1418" y2="680"/>
+
+        <ellipse class="attribute" cx="1385" cy="790" rx="95" ry="28"/>
+        <text class="label" x="1385" y="790">total_amount</text>
+        <line class="line" x1="1370" y1="762" x2="1350" y2="690"/>
+
+        <ellipse class="attribute" cx="1225" cy="785" rx="95" ry="28"/>
+        <text class="label" x="1225" y="785">order_status</text>
+        <line class="line" x1="1260" y1="760" x2="1290" y2="690"/>
+
+        <!-- Order details attrs -->
+        <ellipse class="key" cx="600" cy="740" rx="95" ry="30"/>
+        <text class="label" x="600" y="740">order_detail_id</text>
+        <line class="line" x1="645" y1="715" x2="690" y2="690"/>
+
+        <ellipse class="attribute" cx="540" cy="835" rx="70" ry="28"/>
+        <text class="label" x="540" y="835">quantity</text>
+        <line class="line" x1="585" y1="812" x2="690" y2="690"/>
+
+        <ellipse class="attribute" cx="720" cy="860" rx="60" ry="28"/>
+        <text class="label" x="720" y="860">price</text>
+        <line class="line" x1="725" y1="832" x2="750" y2="690"/>
+
+        <ellipse class="attribute" cx="895" cy="835" rx="105" ry="28"/>
+        <text class="label" x="895" y="835">discount_percent</text>
+        <line class="line" x1="860" y1="810" x2="820" y2="690"/>
+
+        <!-- Payment attrs -->
+        <ellipse class="key" cx="1450" cy="1010" rx="95" ry="30"/>
+        <text class="label" x="1450" y="1010">payment_id</text>
+        <line class="line" x1="1400" y1="1022" x2="1398" y2="1032"/>
+
+        <ellipse class="attribute" cx="1545" cy="1080" rx="95" ry="28"/>
+        <text class="label" x="1545" y="1080">payment_mode</text>
+        <line class="line" x1="1465" y1="1068" x2="1400" y2="1060"/>
+
+        <ellipse class="attribute" cx="1115" cy="1085" rx="105" ry="28"/>
+        <text class="label" x="1115" y="1085">payment_status</text>
+        <line class="line" x1="1210" y1="1070" x2="1222" y2="1060"/>
+
+        <!-- Review attrs -->
+        <ellipse class="key" cx="55" cy="980" rx="85" ry="30"/>
+        <text class="label" x="55" y="980">review_id</text>
+        <line class="line" x1="135" y1="965" x2="120" y2="955"/>
+
+        <ellipse class="attribute" cx="280" cy="1040" rx="70" ry="28"/>
+        <text class="label" x="280" y="1040">rating</text>
+        <line class="line" x1="270" y1="1012" x2="250" y2="970"/>
+
+        <ellipse class="attribute" cx="445" cy="1035" rx="95" ry="28"/>
+        <text class="label" x="445" y="1035">review_text</text>
+        <line class="line" x1="395" y1="1013" x2="330" y2="970"/>
+
+        <!-- Participation lines -->
+        <line class="line" x1="260" y1="205" x2="330" y2="210"/>
+        <line class="line" x1="470" y1="210" x2="640" y2="205"/>
+        <line class="line double" x1="470" y1="218" x2="640" y2="213"/>
+        <text class="small" x="290" y="188">1</text>
+        <text class="small" x="595" y="188">N</text>
+        <text class="small" x="270" y="240">partial</text>
+        <text class="small" x="520" y="240">total</text>
+
+        <line class="line" x1="1320" y1="195" x2="1150" y2="205"/>
+        <path class="line" d="M 1010 205 C 940 210, 1020 560, 1250 655"/>
+        <path class="line double" d="M 1010 213 C 932 220, 1010 570, 1250 663"/>
+        <text class="small" x="1190" y="185">1</text>
+        <text class="small" x="1080" y="430">N</text>
+        <text class="small" x="1180" y="230">partial</text>
+        <text class="small" x="1020" y="355">total</text>
+
+        <line class="line" x1="1110" y1="655" x2="1250" y2="655"/>
+        <line class="line double" x1="1110" y1="663" x2="1250" y2="663"/>
+        <line class="line" x1="950" y1="655" x2="880" y2="655"/>
+        <line class="line double" x1="950" y1="663" x2="880" y2="663"/>
+        <text class="small" x="1140" y="640">1</text>
+        <text class="small" x="905" y="640">N</text>
+        <text class="small" x="1125" y="690">total</text>
+        <text class="small" x="900" y="690">total</text>
+
+        <path class="line" d="M 650 205 C 560 280, 540 470, 580 585"/>
+        <line class="line" x1="420" y1="585" x2="650" y2="655"/>
+        <line class="line double" x1="420" y1="593" x2="650" y2="663"/>
+        <text class="small" x="585" y="305">1</text>
+        <text class="small" x="485" y="668">N</text>
+        <text class="small" x="585" y="350">partial</text>
+        <text class="small" x="455" y="630">total</text>
+
+        <line class="line" x1="1315" y1="860" x2="1335" y2="690"/>
+        <line class="line double" x1="1323" y1="860" x2="1343" y2="690"/>
+        <line class="line" x1="1315" y1="970" x2="1310" y2="1020"/>
+        <line class="line double" x1="1323" y1="970" x2="1318" y2="1020"/>
+        <text class="small" x="1350" y="830">1</text>
+        <text class="small" x="1350" y="995">1</text>
+        <text class="small" x="1365" y="865">total</text>
+        <text class="small" x="1365" y="990">total</text>
+
+        <!-- Review relationship lines -->
+        <path class="line" d="M 620 910 C 720 900, 850 800, 1250 690"/>
+        <path class="line" d="M 530 840 C 610 700, 670 420, 720 240"/>
+        <path class="line" d="M 440 910 C 390 910, 370 920, 370 930"/>
+        <text class="small" x="845" y="820">customer/order/product participate</text>
+
+        <!-- M:N note -->
+        <rect class="attribute" x="1000" y="345" width="500" height="120" rx="16"/>
+        <text class="label" x="1250" y="380">M:N Constraint</text>
+        <text class="label" x="1250" y="415">ORDERS and PRODUCT are many-to-many</text>
+        <text class="label" x="1250" y="448">resolved by ORDER_DETAILS associative entity</text>
+      </svg>
+    </section>
+
+    <div class="legend">
+      <div><strong>Rectangle:</strong> entity</div>
+      <div><strong>Diamond:</strong> relationship</div>
+      <div><strong>Oval:</strong> attribute</div>
+      <div><strong>Green oval:</strong> key attribute</div>
+      <div><strong>Double line:</strong> total participation</div>
+      <div><strong>Single line:</strong> partial participation</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <rect width="1440" height="900" fill="#eef5ea"/>
+  <rect x="70" y="60" width="1300" height="780" rx="28" fill="#ffffff" stroke="#cfd8c8" stroke-width="3"/>
+  <rect x="70" y="60" width="1300" height="74" rx="28" fill="#2f6b3b"/>
+  <text x="120" y="106" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">Agrilink Direct</text>
+  <text x="120" y="190" font-family="Segoe UI, Arial, sans-serif" font-size="36" font-weight="700" fill="#1f2937">My Bag and Order History</text>
+  <rect x="120" y="245" width="430" height="230" rx="20" fill="#f5faf2" stroke="#d8dfd2" stroke-width="2"/>
+  <text x="150" y="292" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700" fill="#1f2937">My Bag</text>
+  <text x="150" y="335" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">Tomato Red x 2 kg</text>
+  <text x="150" y="372" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">Paneer Fresh x 1 kg</text>
+  <text x="150" y="418" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#2f6b3b">Cart total: Rs. 216.00</text>
+  <rect x="355" y="418" width="150" height="42" rx="21" fill="#2f6b3b"/>
+  <text x="390" y="445" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Checkout</text>
+  <rect x="610" y="245" width="640" height="58" rx="10" fill="#2f6b3b"/>
+  <rect x="610" y="303" width="640" height="315" fill="#fbfcfa" stroke="#d8dfd2" stroke-width="2"/>
+  <text x="640" y="282" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Order ID</text>
+  <text x="780" y="282" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Item</text>
+  <text x="970" y="282" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Farmer</text>
+  <text x="1140" y="282" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Status</text>
+  <text x="640" y="355" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#1f2937">#1198</text>
+  <text x="780" y="355" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#1f2937">Spinach</text>
+  <text x="970" y="355" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#1f2937">S. Patil</text>
+  <rect x="1130" y="330" width="110" height="34" rx="17" fill="#e6f8ec"/>
+  <text x="1154" y="353" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#15803d">Delivered</text>
+  <text x="640" y="420" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#1f2937">#1201</text>
+  <text x="780" y="420" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#1f2937">Paneer</text>
+  <text x="970" y="420" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#1f2937">A. Nair</text>
+  <rect x="1138" y="395" width="90" height="34" rx="17" fill="#dff1ff"/>
+  <text x="1162" y="418" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#1d4ed8">Packed</text>
+  <text x="640" y="485" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#1f2937">#1204</text>
+  <text x="780" y="485" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#1f2937">Tomato</text>
+  <text x="970" y="485" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#1f2937">R. Singh</text>
+  <rect x="1135" y="460" width="96" height="34" rx="17" fill="#e8f0ff"/>
+  <text x="1160" y="483" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#2563eb">Shipped</text>
+  <rect x="610" y="655" width="640" height="72" rx="16" fill="#fff6d8" stroke="#e5d28c" stroke-width="2"/>
+  <text x="640" y="700" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#6b5a1a">Refund policy: Placed 100%, Packed 75%, Shipped 50%, Delivered 0%</text>
+</svg>

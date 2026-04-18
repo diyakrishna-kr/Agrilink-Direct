@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <rect width="1440" height="900" fill="#eef5ea"/>
+  <rect x="70" y="60" width="1300" height="780" rx="28" fill="#ffffff" stroke="#cfd8c8" stroke-width="3"/>
+  <rect x="70" y="60" width="1300" height="74" rx="28" fill="#2f6b3b"/>
+  <text x="120" y="106" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">Agrilink Direct</text>
+  <text x="120" y="195" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700" fill="#1f2937">Farmer Dashboard</text>
+  <text x="120" y="232" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#6b7280">Track earnings, review incoming orders, and update fulfilment status.</text>
+  <rect x="120" y="285" width="260" height="120" rx="20" fill="#f5faf2" stroke="#d8dfd2" stroke-width="2"/>
+  <rect x="410" y="285" width="260" height="120" rx="20" fill="#f5faf2" stroke="#d8dfd2" stroke-width="2"/>
+  <rect x="700" y="285" width="260" height="120" rx="20" fill="#f5faf2" stroke="#d8dfd2" stroke-width="2"/>
+  <rect x="990" y="285" width="260" height="120" rx="20" fill="#f5faf2" stroke="#d8dfd2" stroke-width="2"/>
+  <text x="150" y="328" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#6b7280">Products Listed</text>
+  <text x="150" y="375" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700" fill="#1f2937">28</text>
+  <text x="440" y="328" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#6b7280">Incoming Orders</text>
+  <text x="440" y="375" font-family="Segoe UI, Arial, sans-serif" font-size="38" font-weight="700" fill="#1f2937">14</text>
+  <text x="730" y="328" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#6b7280">Delivered Revenue</text>
+  <text x="730" y="375" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#1f2937">Rs. 18,450</text>
+  <text x="1020" y="328" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#6b7280">Open Order Value</text>
+  <text x="1020" y="375" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#1f2937">Rs. 5,920</text>
+  <rect x="120" y="465" width="1130" height="58" rx="10" fill="#2f6b3b"/>
+  <rect x="120" y="523" width="1130" height="210" rx="0" fill="#fbfcfa" stroke="#d8dfd2" stroke-width="2"/>
+  <text x="150" y="502" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Order</text>
+  <text x="315" y="502" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Product</text>
+  <text x="520" y="502" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Customer</text>
+  <text x="760" y="502" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Payment</text>
+  <text x="900" y="502" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="700" fill="#ffffff">Status</text>
+  <text x="150" y="575" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">#1204</text>
+  <text x="315" y="575" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">Tomato Red • 10 kg</text>
+  <text x="520" y="575" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">Arun Nair</text>
+  <text x="760" y="575" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">UPI</text>
+  <rect x="900" y="548" width="120" height="34" rx="17" fill="#dff1ff"/>
+  <text x="933" y="571" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#1d4ed8">Packed</text>
+  <rect x="1050" y="545" width="85" height="38" rx="19" fill="#eef5ea" stroke="#5b9a63" stroke-width="2"/>
+  <text x="1070" y="570" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#2f6b3b">Ship</text>
+  <text x="150" y="640" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">#1205</text>
+  <text x="315" y="640" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">Paneer Fresh • 5 kg</text>
+  <text x="520" y="640" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">Meera Das</text>
+  <text x="760" y="640" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#1f2937">COD</text>
+  <rect x="900" y="613" width="134" height="34" rx="17" fill="#e6f8ec"/>
+  <text x="928" y="636" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#15803d">Delivered</text>
+</svg>

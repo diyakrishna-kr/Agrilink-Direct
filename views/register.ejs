@@ -1,0 +1,82 @@
+<h2 class="mb-3">Register a New Account</h2>
+<% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form method="POST" action="/register" class="mb-4">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label>Registration Type</label>
+            <select name="type" class="form-select" id="regType" onchange="toggleFields()" required>
+                <option value="customer">Customer</option>
+                <option value="farmer">Farmer</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label>Full Name</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label>Phone Number</label>
+            <input type="text" name="phone" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+    </div>
+
+    <!-- Customer Specific Fields -->
+    <div id="customerFields" class="row">
+        <div class="col-md-6 mb-3">
+            <label>Email Address</label>
+            <input type="email" name="email" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Delivery Address</label>
+            <input type="text" name="address" class="form-control">
+        </div>
+    </div>
+
+    <!-- Farmer Specific Fields -->
+    <div id="farmerFields" class="row" style="display: none;">
+        <div class="col-md-6 mb-3">
+            <label>Farm Location</label>
+            <input type="text" name="location" class="form-control">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Bank Details</label>
+            <input type="text" name="bank_details" class="form-control">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Complete Registration</button>
+</form>
+
+<script>
+function toggleFields() {
+    const type = document.getElementById('regType').value;
+    if (type === 'farmer') {
+        document.getElementById('farmerFields').style.display = 'flex';
+        document.getElementById('customerFields').style.display = 'none';
+        
+        // Remove required from customer
+        document.querySelector('input[name="email"]').removeAttribute('required');
+        document.querySelector('input[name="address"]').removeAttribute('required');
+        // Add required to farmer
+        document.querySelector('input[name="location"]').setAttribute('required', 'true');
+        document.querySelector('input[name="bank_details"]').setAttribute('required', 'true');
+    } else {
+        document.getElementById('farmerFields').style.display = 'none';
+        document.getElementById('customerFields').style.display = 'flex';
+        
+        // Remove required from farmer
+        document.querySelector('input[name="location"]').removeAttribute('required');
+        document.querySelector('input[name="bank_details"]').removeAttribute('required');
+        // Add required to customer
+        document.querySelector('input[name="email"]').setAttribute('required', 'true');
+        document.querySelector('input[name="address"]').setAttribute('required', 'true');
+    }
+}
+toggleFields();
+</script>

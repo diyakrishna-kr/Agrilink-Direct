@@ -1,0 +1,51 @@
+-- Connect as application user
+CONNECT C##FARMER/farmer123;
+
+-- 100% Unique Mapping
+UPDATE product SET image_url = 'onions.jpg' WHERE product_name = 'Onions';
+UPDATE product SET image_url = 'tomatoes.jpg' WHERE product_name = 'Tomatoes';
+UPDATE product SET image_url = 'grapes.jpg' WHERE product_name = 'Grapes';
+UPDATE product SET image_url = 'wheat_lokwan.jpg' WHERE product_name = 'Wheat (Lokwan)';
+UPDATE product SET image_url = 'rice_basmati.jpg' WHERE product_name = 'Rice (Basmati)';
+UPDATE product SET image_url = 'potatoes_desi.jpg' WHERE product_name = 'Potatoes (Desi)';
+UPDATE product SET image_url = 'cabbage_green.jpg' WHERE product_name = 'Green Cabbage';
+UPDATE product SET image_url = 'cauliflower.jpg' WHERE product_name = 'Cauliflower';
+UPDATE product SET image_url = 'carrots.jpg' WHERE product_name = 'Carrots';
+UPDATE product SET image_url = 'spinach.jpg' WHERE product_name = 'Spinach (Palak)';
+UPDATE product SET image_url = 'eggplant.jpg' WHERE product_name = 'Eggplant (Brinjal)';
+UPDATE product SET image_url = 'garlic.jpg' WHERE product_name = 'Garlic';
+UPDATE product SET image_url = 'green_chilies.jpg' WHERE product_name = 'Green Chilies';
+UPDATE product SET image_url = 'capsicum.jpg' WHERE product_name = 'Bell Pepper (Capsicum)';
+UPDATE product SET image_url = 'lady_finger.jpg' WHERE product_name = 'Lady Finger (Bhindi)';
+UPDATE product SET image_url = 'apple_kashmiri.jpg' WHERE product_name = 'Kashmiri Apples';
+UPDATE product SET image_url = 'apple_himachal.jpg' WHERE product_name = 'Himachal Apples';
+UPDATE product SET image_url = 'banana_robusta.jpg' WHERE product_name = 'Robusta Banana';
+UPDATE product SET image_url = 'banana_elaichi.jpg' WHERE product_name = 'Elaichi Banana';
+UPDATE product SET image_url = 'mango_alphonso.jpg' WHERE product_name = 'Alphonso Mango';
+UPDATE product SET image_url = 'mango_kesar.jpg' WHERE product_name = 'Kesar Mango';
+UPDATE product SET image_url = 'cherries.jpg' WHERE product_name = 'Cherries';
+UPDATE product SET image_url = 'peaches.jpg' WHERE product_name = 'Peaches';
+UPDATE product SET image_url = 'papaya.jpg' WHERE product_name = 'Papaya';
+UPDATE product SET image_url = 'pomegranate.jpg' WHERE product_name = 'Pomegranates';
+UPDATE product SET image_url = 'wheat_sharbati.jpg' WHERE product_name = 'Premium Sharbati Wheat';
+UPDATE product SET image_url = 'rice_sonamasoori.jpg' WHERE product_name = 'Sona Masoori Rice';
+UPDATE product SET image_url = 'bajra.jpg' WHERE product_name = 'Pearl Millet (Bajra)';
+UPDATE product SET image_url = 'jowar.jpg' WHERE product_name = 'Sorghum (Jowar)';
+UPDATE product SET image_url = 'groundnuts.jpg' WHERE product_name = 'Groundnuts';
+UPDATE product SET image_url = 'yellow_dal.jpg' WHERE product_name = 'Yellow Dal (Moong)';
+UPDATE product SET image_url = 'red_lentils.jpg' WHERE product_name = 'Red Lentils (Masoor)';
+UPDATE product SET image_url = 'chickpeas.jpg' WHERE product_name = 'Chickpeas (Chana)';
+UPDATE product SET image_url = 'black_gram.jpg' WHERE product_name = 'Black Gram (Urad)';
+UPDATE product SET image_url = 'black_pepper.jpg' WHERE product_name = 'Black Pepper';
+UPDATE product SET image_url = 'cardamom.jpg' WHERE product_name = 'Cardamom';
+UPDATE product SET image_url = 'cloves.jpg' WHERE product_name = 'Cloves';
+UPDATE product SET image_url = 'cinnamon.jpg' WHERE product_name = 'Cinnamon';
+UPDATE product SET image_url = 'nutmeg.jpg' WHERE product_name = 'Nutmeg';
+UPDATE product SET image_url = 'milk_cow.jpg' WHERE product_name = 'A2 Cow Milk (per L)';
+UPDATE product SET image_url = 'milk_buffalo.jpg' WHERE product_name = 'Buffalo Milk (per L)';
+UPDATE product SET image_url = 'ghee.jpg' WHERE product_name = 'Pure Cow Ghee';
+UPDATE product SET image_url = 'butter.jpg' WHERE product_name = 'Homemade Butter';
+UPDATE product SET image_url = 'paneer.jpg' WHERE product_name = 'Fresh Paneer';
+
+COMMIT;
+EXIT;

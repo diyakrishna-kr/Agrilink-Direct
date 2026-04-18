@@ -1,0 +1,239 @@
+<%
+  const safeCartState = typeof cartState !== 'undefined'
+    ? cartState
+    : { items: [], groups: [], total: 0, savings: 0, hasIssues: false };
+%>
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2 page-toolbar">
+    <h2 class="mb-0">Shop Products</h2>
+    <div class="d-flex gap-2">
+        <a href="/" class="btn btn-outline-success rounded-pill px-4 fw-bold">Browse Products</a>
+    </div>
+</div>
+
+<% if (message) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+<% if (error) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<% if (safeCartState.items.length > 0) { %>
+<div class="cart-panel mb-4">
+  <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <div>
+      <h3 class="mb-1">My Bag</h3>
+      <p class="text-muted mb-0">Selected items appear here after you click Buy Now.</p>
+    </div>
+    <a href="/checkout" class="btn btn-success fw-bold <%= safeCartState.hasIssues ? 'disabled' : '' %>">Proceed to Checkout</a>
+  </div>
+
+    <div class="row g-3 mb-3">
+      <% safeCartState.groups.forEach(group => { %>
+        <div class="col-12 col-lg-6">
+          <div class="card h-100 border-0 shadow-sm glass-card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0"><%= group.farmer_name %></h5>
+                <span class="badge bg-dark rounded-pill">Order Group</span>
+              </div>
+
+              <% group.items.forEach(item => { %>
+                <div class="cart-item">
+                  <div>
+                    <div class="fw-bold"><%= item.product_name %></div>
+                    <div class="text-muted small">
+                      <% if (item.discount_percent > 0) { %>
+                        <span class="text-decoration-line-through me-2">Rs. <%= item.original_price_per_kg.toFixed(2) %>/kg</span>
+                        <span class="text-success fw-semibold">Rs. <%= item.discounted_price_per_kg.toFixed(2) %>/kg</span>
+                        <span class="badge bg-warning text-dark ms-2"><%= item.discount_percent %>% off</span>
+                      <% } else { %>
+                        Rs. <%= item.discounted_price_per_kg.toFixed(2) %>/kg
+                      <% } %>
+                    </div>
+                    <div class="text-muted small">Expires: <%= item.expiry_display %></div>
+                    <% if (item.is_near_expiry) { %>
+                      <div class="small text-warning fw-semibold">Near expiry discount applied.</div>
+                    <% } %>
+                    <% if (item.is_expired) { %>
+                      <div class="small text-danger fw-semibold">Expired item. Remove it before checkout.</div>
+                    <% } %>
+                    <% if (item.has_stock_issue) { %>
+                      <div class="small text-danger fw-semibold">Only <%= item.available_quantity %> kg available.</div>
+                    <% } %>
+                    <div class="small fw-semibold mt-1">Qty selected: <%= item.quantity %> kg</div>
+                  </div>
+
+                  <div class="cart-actions">
+                    <form action="/cart/update" method="POST" class="d-flex gap-2 align-items-center">
+                      <input type="hidden" name="product_id" value="<%= item.product_id %>">
+                      <input name="quantity" type="number" step="0.01" min="0.01" max="<%= item.available_quantity %>" class="form-control form-control-sm" value="<%= item.quantity %>" required>
+                      <button type="submit" class="btn btn-outline-success btn-sm">Update</button>
+                    </form>
+                    <form action="/cart/remove" method="POST">
+                      <input type="hidden" name="product_id" value="<%= item.product_id %>">
+                      <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
+                    </form>
+                    <div class="fw-bold text-success">Rs. <%= item.subtotal.toFixed(2) %></div>
+                  </div>
+                </div>
+              <% }) %>
+
+              <div class="cart-group-summary mt-3">
+                <span>Total</span>
+                <strong>Rs. <%= group.total.toFixed(2) %></strong>
+              </div>
+              <% if (group.savings > 0) { %>
+                <div class="small text-success mt-1">Savings in this group: Rs. <%= group.savings.toFixed(2) %></div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <div class="cart-summary">
+      <div><strong>Cart total:</strong> Rs. <%= safeCartState.total.toFixed(2) %></div>
+      <% if (safeCartState.savings > 0) { %>
+        <div class="text-success"><strong>You save:</strong> Rs. <%= safeCartState.savings.toFixed(2) %></div>
+      <% } %>
+    </div>
+</div>
+<% } %>
+
+<h2 class="mb-3 mt-4 border-bottom pb-2">My Order History</h2>
+<div class="alert alert-warning small mb-3 policy-note">
+  <strong>Refund policy:</strong> Placed = 100%, Packed = 75%, Shipped = 50%, Delivered = 0%.
+</div>
+<div class="glass-container p-0 overflow-hidden mb-5">
+    <table class="table table-hover align-middle mb-0">
+      <thead class="table-dark">
+          <tr>
+              <th class="ps-4">Order ID</th>
+              <th>Item</th>
+              <th>Farmer</th>
+              <th>Total Cost</th>
+              <th>Status</th>
+              <th>Refund</th>
+              <th class="pe-4">Transaction Date</th>
+          </tr>
+      </thead>
+      <tbody>
+        <% if (orders.length === 0) { %>
+            <tr><td colspan="7" class="text-center py-4 text-muted">You haven't placed any orders yet.</td></tr>
+        <% } %>
+        <% orders.forEach(o => { %>
+          <tr>
+            <td class="ps-4 fw-bold text-muted">#<%= o.order_id %></td>
+            <td>
+               <div class="d-flex align-items-center">
+                   <% if (o.image_url) { %>
+                       <img src="<%= o.image_url.startsWith('http') ? o.image_url : '/uploads/' + o.image_url %>" class="product-img order-product-thumb me-3 border shadow-sm">
+                   <% } %>
+                   <div>
+                       <strong><%= o.product_name %></strong><br>
+                       <small class="text-muted"><%= o.quantity %> kg</small><br>
+                       <% if (o.discount_percent > 0) { %>
+                         <small class="text-success"><%= o.discount_percent %>% expiry discount applied</small>
+                       <% } %>
+                       <% if (o.customer_rating) { %>
+                         <div class="small text-warning mt-1">Your review: <%= o.customer_rating %> / 5</div>
+                       <% } %>
+                   </div>
+               </div>
+            </td>
+            <td><%= o.farmer_name %></td>
+            <td>
+              <strong class="text-success">Rs. <%= (o.quantity * o.price).toFixed(2) %></strong>
+              <% if (o.discount_percent > 0) { %>
+                <div class="small text-muted text-decoration-line-through">Rs. <%= (o.quantity * o.original_price).toFixed(2) %></div>
+              <% } %>
+            </td>
+            <td>
+                <span class="badge <%= o.order_status === 'Delivered' ? 'bg-success' : o.order_status === 'Shipped' ? 'bg-primary' : o.order_status === 'Packed' ? 'bg-info text-dark' : o.order_status === 'Cancelled' ? 'bg-danger' : 'bg-warning text-dark' %> rounded-pill mb-1">
+                    <%= o.order_status %>
+                </span>
+                <% if (['Placed', 'Packed', 'Shipped'].includes(o.order_status)) { %>
+                  <details class="mt-2 action-panel">
+                    <summary class="btn btn-outline-danger btn-sm">Cancel Order</summary>
+                    <form action="/order/<%= o.order_id %>/cancel" method="POST" class="mt-2 review-form" onsubmit="return confirm('Cancel this order?');">
+                      <textarea name="cancel_reason" class="form-control form-control-sm mb-2" rows="2" placeholder="Reason for cancellation (optional)"></textarea>
+                      <button type="submit" class="btn btn-outline-danger btn-sm">Confirm Cancellation</button>
+                    </form>
+                  </details>
+                <% } %>
+                <% if (o.order_status === 'Delivered') { %>
+                  <details class="mt-2 action-panel review-panel" <%= o.customer_rating ? 'open' : '' %>>
+                    <summary class="btn btn-outline-success btn-sm"><%= o.customer_rating ? 'Update Review' : 'Rate Product' %></summary>
+                    <form action="/order/<%= o.order_id %>/review" method="POST" class="mt-2 review-form">
+                      <input type="hidden" name="product_id" value="<%= o.product_id %>">
+                      <div class="mb-2">
+                        <label class="form-label small fw-semibold mb-1 d-block">Rate this product</label>
+                        <div class="star-rating" data-review-root>
+                          <% for (let star = 5; star >= 1; star--) { %>
+                            <input
+                              type="radio"
+                              id="rating-<%= o.order_id %>-<%= star %>"
+                              name="rating"
+                              value="<%= star %>"
+                              <%= Number(o.customer_rating) === star ? 'checked' : '' %>
+                              required
+                            >
+                            <label for="rating-<%= o.order_id %>-<%= star %>" title="<%= star %> star<%= star === 1 ? '' : 's' %>">&#9733;</label>
+                          <% } %>
+                        </div>
+                      </div>
+                      <div class="mb-2 review-text-wrap <%= o.customer_rating ? '' : 'd-none' %>" data-review-text-wrap>
+                        <textarea name="review_text" class="form-control form-control-sm" rows="2" placeholder="Share your experience"><%= o.review_text || '' %></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-outline-success btn-sm"><%= o.customer_rating ? 'Update Review' : 'Submit Review' %></button>
+                    </form>
+                  </details>
+                <% } %>
+            </td>
+            <td>
+              <% if (o.order_status === 'Cancelled') { %>
+                <div class="fw-semibold text-success"><%= Number(o.refund_percent || 0) %>% refund</div>
+                <div class="small text-muted">Rs. <%= Number(o.refund_amount || 0).toFixed(2) %></div>
+                <% if (o.cancel_reason) { %>
+                  <div class="small text-muted mt-1">Reason: <%= o.cancel_reason %></div>
+                <% } %>
+              <% } else if (['Placed', 'Packed', 'Shipped'].includes(o.order_status)) { %>
+                <% const previewPercent = o.order_status === 'Placed' ? 100 : o.order_status === 'Packed' ? 75 : 50; %>
+                <div class="small text-muted">If cancelled now</div>
+                <div class="fw-semibold"><%= previewPercent %>% refund</div>
+              <% } else { %>
+                <span class="small text-muted">No refund</span>
+              <% } %>
+            </td>
+            <td class="pe-4 text-muted small"><%= new Date(o.order_date).toLocaleString() %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+</div>
+
+<script>
+  document.querySelectorAll('[data-review-root]').forEach((root) => {
+    const form = root.closest('form');
+    const textWrap = form ? form.querySelector('[data-review-text-wrap]') : null;
+    if (!form || !textWrap) return;
+
+    const syncReviewState = () => {
+      const hasSelectedRating = !!form.querySelector('input[name="rating"]:checked');
+      textWrap.classList.toggle('d-none', !hasSelectedRating);
+    };
+
+    root.querySelectorAll('input[name="rating"]').forEach((input) => {
+      input.addEventListener('change', syncReviewState);
+    });
+
+    syncReviewState();
+  });
+</script>

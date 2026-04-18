@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Available Products</h2>
+<table class="table table-sm">
+  <thead><tr><th>Product</th><th>Farmer</th><th>Category</th><th>Price/kg</th><th>Stock</th></tr></thead>
+  <tbody>
+  {% for p in products %}
+    <tr><td>{{ p.product_name }}</td><td>{{ p.farmer.name }}</td><td>{{ p.category }}</td><td>{{ p.price_per_kg }}</td><td>{{ p.available_quantity }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

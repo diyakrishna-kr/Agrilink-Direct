@@ -1,0 +1,36 @@
+<h2 class="mb-3">Login</h2>
+<% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+<div class="row">
+    <div class="col-md-6">
+        <form method="POST" action="/login">
+            <div class="mb-3">
+                <label>I am a...</label>
+                <select name="type" class="form-select" required>
+                    <option value="customer">Customer</option>
+                    <option value="farmer">Farmer</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Email (Customer), Phone (Farmer), or Username (Admin)</label>
+                <input type="text" name="emailOrPhone" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a href="/register" class="btn btn-link">Don't have an account?</a>
+        </form>
+    </div>
+    <div class="col-md-6 text-end">
+        <div class="alert alert-info">
+            <strong>Demo Accounts:</strong><br>
+            <i>Farmer:</i> Anoop Nair | Phone: 9876500001 | Pass: password123<br>
+            <i>Customer:</i> Email: arun.nair@example.com | Pass: password123<br>
+            <i>Admin:</i> Username: admin | Pass: admin123
+        </div>
+    </div>
+</div>
